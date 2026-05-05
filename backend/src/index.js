@@ -9,7 +9,9 @@ config({ path: path.join(path.dirname(fileURLToPath(import.meta.url)), '../../.e
 const { BACKEND_PORT } = process.env;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const uploadsDirectory = path.join(__dirname, '../uploads');
+const uploadsDirectory = process.env.NETLIFY
+  ? '/tmp/uploads'
+  : path.join(__dirname, '../uploads');
 
 fs.mkdirSync(uploadsDirectory, { recursive: true });
 
@@ -118,7 +120,7 @@ app.use((error, _req, res, next) => {
   return next(error);
 });
 
-if (process.env.NODE_ENV !== 'test') {
+if (process.env.NODE_ENV !== 'test' && !process.env.NETLIFY) {
   // eslint-disable-next-line no-console
   app.listen(BACKEND_PORT, () => console.log(`Server running on port ${BACKEND_PORT}`));
 }
