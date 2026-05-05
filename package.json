@@ -1,0 +1,41 @@
+{
+  "name": "platform-tech-test",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start-backend": "nodemon backend/src/index.js",
+    "start-frontend": "vite frontend",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test:frontend": "vitest run --config frontend/vite.config.js",
+    "test:backend": "vitest run --config backend/vitest.config.js",
+    "test": "npm run test:frontend && npm run test:backend"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^5.0.0",
+    "multer": "^2.1.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@vitejs/plugin-react": "^4.0.0",
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-vitest": "^0.5.4",
+    "globals": "^17.6.0",
+    "jsdom": "^29.1.1",
+    "nodemon": "^3.1.14",
+    "supertest": "^7.2.2",
+    "vite": "^6.0.0",
+    "vitest": "^4.1.5"
+  }
+}

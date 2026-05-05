@@ -1,0 +1,250 @@
+:root {
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  color: #112218;
+  background:
+    radial-gradient(circle at top left, rgba(250, 202, 96, 0.9), transparent 24%),
+    radial-gradient(circle at top right, rgba(76, 175, 120, 0.22), transparent 22%),
+    linear-gradient(160deg, #f7f2e8 0%, #eef7ef 48%, #f7fbff 100%);
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.app-shell {
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 3rem 0 4rem;
+}
+
+.hero-panel {
+  max-width: 720px;
+  margin-bottom: 2rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.75rem;
+  color: #0c6b58;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.hero-panel h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 6vw, 4.7rem);
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+}
+
+.hero-copy {
+  max-width: 52ch;
+  margin: 1rem 0 0;
+  color: #395245;
+  font-size: 1.05rem;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.submission-form,
+.response-panel {
+  border: 1px solid rgba(17, 34, 24, 0.08);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.74);
+  box-shadow: 0 20px 70px rgba(30, 51, 41, 0.11);
+  backdrop-filter: blur(18px);
+}
+
+.submission-form {
+  padding: 1.5rem;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-bottom: 1.15rem;
+}
+
+.field-group label,
+.field-label {
+  font-size: 0.94rem;
+  font-weight: 700;
+}
+
+.field-group input,
+.field-group textarea {
+  width: 100%;
+  border: 1px solid rgba(44, 76, 61, 0.14);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.86);
+  padding: 0.95rem 1rem;
+  color: #112218;
+  transition: border-color 140ms ease, box-shadow 140ms ease, transform 140ms ease;
+}
+
+.field-group input:focus,
+.field-group textarea:focus {
+  outline: none;
+  border-color: #0c6b58;
+  box-shadow: 0 0 0 4px rgba(12, 107, 88, 0.12);
+  transform: translateY(-1px);
+}
+
+.field-group textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.field-hint {
+  color: #507162;
+  font-size: 0.9rem;
+}
+
+.dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  width: 100%;
+  border: 1.5px dashed rgba(12, 107, 88, 0.42);
+  border-radius: 22px;
+  background:
+    linear-gradient(135deg, rgba(12, 107, 88, 0.06), rgba(250, 202, 96, 0.18));
+  padding: 1.4rem;
+  color: #112218;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.dropzone:hover,
+.dropzone.drag-over {
+  border-color: #0c6b58;
+  box-shadow: 0 18px 40px rgba(12, 107, 88, 0.12);
+  transform: translateY(-2px);
+}
+
+.dropzone-title {
+  font-weight: 700;
+}
+
+.dropzone-copy {
+  color: #426455;
+}
+
+.file-pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  background: #112218;
+  padding: 0.45rem 0.8rem;
+  color: #f7f2e8;
+  font-size: 0.88rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.field-error,
+.request-error {
+  margin: 0;
+  color: #b02222;
+  font-size: 0.9rem;
+}
+
+.submit-button {
+  border: 0;
+  border-radius: 999px;
+  background: #112218;
+  padding: 0.95rem 1.4rem;
+  color: #f7f2e8;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 140ms ease, opacity 140ms ease;
+}
+
+.submit-button:hover {
+  transform: translateY(-1px);
+}
+
+.submit-button:disabled {
+  opacity: 0.72;
+  cursor: wait;
+}
+
+.response-panel {
+  padding: 1.5rem;
+}
+
+.response-panel h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.75rem;
+}
+
+.response-panel p {
+  margin-top: 0;
+  color: #395245;
+}
+
+.response-panel dl {
+  display: grid;
+  gap: 0.9rem;
+  margin: 1.2rem 0 0;
+}
+
+.response-panel dt {
+  margin-bottom: 0.2rem;
+  color: #507162;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.response-panel dd {
+  margin: 0;
+  word-break: break-word;
+}
+
+@media (max-width: 860px) {
+  .app-shell {
+    padding-top: 2rem;
+  }
+
+  .card {
+    grid-template-columns: 1fr;
+  }
+}
