@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build": "vite build frontend",
     "start-backend": "nodemon backend/src/index.js",
     "start-frontend": "vite frontend",
     "lint": "eslint .",
