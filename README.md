@@ -152,7 +152,7 @@ npm run lint:fix
 
 
 ## Assignment
-
+                 --------- Website only for show purpose will not store data due to Netlify free Limitaitons -------------
 We have provided a basic application, where a form submits and the back-end returns what has been submitted.
 
 Make the following changes:
