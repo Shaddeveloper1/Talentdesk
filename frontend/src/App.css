@@ -239,6 +239,61 @@ textarea {
   word-break: break-word;
 }
 
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  background: rgba(17, 34, 24, 0.42);
+  backdrop-filter: blur(6px);
+  z-index: 30;
+}
+
+.modal-card {
+  width: min(460px, 100%);
+  border: 1px solid rgba(17, 34, 24, 0.12);
+  border-radius: 26px;
+  background: #fefcf7;
+  box-shadow: 0 28px 70px rgba(17, 34, 24, 0.25);
+  padding: 1.4rem;
+  animation: modal-pop 180ms ease-out;
+}
+
+.modal-card h2 {
+  margin: 0;
+  font-size: clamp(1.6rem, 4vw, 2rem);
+  letter-spacing: -0.03em;
+}
+
+.modal-card p {
+  margin: 0.7rem 0 0;
+  color: #395245;
+}
+
+.modal-button {
+  margin-top: 1.2rem;
+  border: 0;
+  border-radius: 999px;
+  background: #112218;
+  padding: 0.7rem 1.1rem;
+  color: #f7f2e8;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@keyframes modal-pop {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 @media (max-width: 860px) {
   .app-shell {
     padding-top: 2rem;

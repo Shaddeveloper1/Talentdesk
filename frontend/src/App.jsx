@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
 
 const initialValues = {
@@ -32,6 +32,8 @@ const validateForm = ({ name, message, file }) => {
 
 function App() {
   const fileInputRef = useRef(null);
+  const successModalRef = useRef(null);
+  const closeModalButtonRef = useRef(null);
   const [formData, setFormData] = useState(initialValues);
   const [selectedFile, setSelectedFile] = useState(null);
   const [response, setResponse] = useState(null);
@@ -39,6 +41,64 @@ function App() {
   const [requestError, setRequestError] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDragOver, setIsDragOver] = useState(false);
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isSuccessModalOpen) {
+      return undefined;
+    }
+
+    const previousFocusedElement = document.activeElement;
+    closeModalButtonRef.current?.focus();
+
+    const getFocusableElements = () => {
+      const modal = successModalRef.current;
+      if (!modal) {
+        return [];
+      }
+
+      return Array.from(modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'))
+        .filter((element) => !element.hasAttribute('disabled'));
+    };
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setIsSuccessModalOpen(false);
+        return;
+      }
+
+      if (event.key !== 'Tab') {
+        return;
+      }
+
+      const focusableElements = getFocusableElements();
+      if (focusableElements.length === 0) {
+        event.preventDefault();
+        successModalRef.current?.focus();
+        return;
+      }
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      if (previousFocusedElement instanceof HTMLElement) {
+        previousFocusedElement.focus();
+      }
+    };
+  }, [isSuccessModalOpen]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -103,6 +163,7 @@ function App() {
         return;
       }
 
+      setIsSuccessModalOpen(true);
       setResponse(data);
       setFormData(initialValues);
       setSelectedFile(null);
@@ -224,6 +285,36 @@ function App() {
           </aside>
         )}
       </section>
+
+      {isSuccessModalOpen && (
+        <div
+          className="modal-backdrop"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="submit-success-title"
+          aria-describedby="submit-success-description"
+          onClick={() => setIsSuccessModalOpen(false)}
+        >
+          <div
+            ref={successModalRef}
+            className="modal-card"
+            tabIndex="-1"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <p className="eyebrow">Submission complete</p>
+            <h2 id="submit-success-title">Success</h2>
+            <p id="submit-success-description">Data has sent to BackEnd</p>
+            <button
+              ref={closeModalButtonRef}
+              type="button"
+              className="modal-button"
+              onClick={() => setIsSuccessModalOpen(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
